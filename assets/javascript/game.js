@@ -1,4 +1,21 @@
-var wordStore = ["mercury", "venus", "earth", "mars", "jupiter", "saturn", "uranus", "neptune", "pluto", "astroid", "galaxy", "andromeda", "moon", "hubble", "star", "universe"];
+var wordStore = [
+    ['mercury', 'planet'],
+    ['venus', 'planet'],
+    ['earth', 'A planet'],
+    ['mars', 'planet'],
+    ['saturn', 'planet'],
+    ['uranus', 'planet'],
+    ['neptune', 'planet'],
+    ['pluto', 'planet'],
+    ['jupiter', 'planet'],
+    ['sun', 'A star'],
+    ['astroid', 'rocks that forms the belt'],
+    ['comet', 'flying rocks that produce tail'],
+    ['moon', 'orbits around a planet'],
+    ['star', 'planets usually orbits around this'],
+    ['universe', 'billions of galaxies'],
+    ['hubble', 'space telescope'],
+    ['andromeda', 'Its a galaxy']];
 var alphabets = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
 
 var userText = document.getElementById("user-text");
@@ -12,23 +29,83 @@ var i = 0;
 var canvas = document.getElementById("myCanvas");
 var ctx = canvas.getContext("2d");
 ctx.beginPath();
-
 var targetDiv = document.getElementById("totalTries");
-targetDiv.textContent = maxTries;
+var randomWordIndex = 0;
+var actualWord = '';
+var wordHint = '';
+var resultText = document.getElementById("result-text");
+var resultText = document.getElementById("result-text");
+var playAgainBtn = document.getElementById("playBtn");
 
-var targetDiv = document.getElementById("exhausted");
-targetDiv.textContent = numberofTries;
+// var targetDiv = document.getElementById("totalTries");
+// targetDiv.textContent = maxTries;
 
-var targetDiv = document.getElementById("pending");
-targetDiv.textContent = maxTries - numberofTries;
+// var targetDiv = document.getElementById("exhausted");
+// targetDiv.textContent = numberofTries;
 
-var actualWord = wordStore[Math.floor(Math.random() * wordStore.length)];
-console.log("Actual word : " + actualWord);
+// var targetDiv = document.getElementById("pending");
+// targetDiv.textContent = maxTries - numberofTries;
+
+// var randomWordIndex = Math.floor(Math.random() * wordStore.length);
+// var actualWord = wordStore[randomWordIndex][0];
+// var wordHint = wordStore[randomWordIndex][1];
+// var resultText = document.getElementById("result-text");
+// resultText.textContent = wordHint;
+
 
 function insertGuessChar(word, pos, ch) {
     console.log("First part " + word.slice(0, pos) + "Second part " + ch + "Third Part " + word.slice(pos + 1));
     return word.slice(0, pos) + ch + word.slice(pos + 1);
 }
+
+function initializePlay() {
+    screenWord = "                                                ";
+    guessWord = "";
+    maxTries = 11;
+    numberofTries = 0;
+    wordFound = false;
+    keyTyped = '';
+    i = 0;
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.beginPath();
+
+    targetDiv = document.getElementById("totalTries");
+    targetDiv.textContent = maxTries;
+    
+    targetDiv = document.getElementById("exhausted");
+    targetDiv.textContent = numberofTries;
+    
+    targetDiv = document.getElementById("pending");
+    targetDiv.textContent = maxTries - numberofTries;
+    
+    randomWordIndex = Math.floor(Math.random() * wordStore.length);
+    actualWord = wordStore[randomWordIndex][0];
+    wordHint = wordStore[randomWordIndex][1];
+    resultText = document.getElementById("result-text");
+    resultText.textContent = '';
+
+    console.log("Actual word : " + actualWord);
+    
+    for (i = 0; i < actualWord.length * 2; i += 2) {
+        screenWord = insertGuessChar(screenWord, i, '-');
+    }
+    
+    userText.textContent = screenWord;
+    
+    for (i = 0; i < actualWord.length; i++) {
+        guessWord = insertGuessChar(guessWord, i, '-');
+    }
+
+    for (i = 0; i < alphabets.length; i++) {
+            targetDiv = document.getElementById(alphabets[i]);
+            targetDiv.setAttribute("class", "keyTryStyle");
+            targetDiv.innerHTML = alphabets[i];
+        }
+    
+    playAgainBtn.setAttribute("class","btn btn-dark d-none");
+}
+
+initializePlay();
 
 function drawHangMan(triesUp) {
     switch (triesUp) {
@@ -114,15 +191,12 @@ function drawHangMan(triesUp) {
 }
 
 
-
-for (i = 0; i < actualWord.length * 2; i += 2) {
-    screenWord = insertGuessChar(screenWord, i, '-');
+document.getElementById("playBtn").onclick = function() {
+    initializePlay();
 }
 
-userText.textContent = screenWord;
-
-for (i = 0; i < actualWord.length; i++) {
-    guessWord = insertGuessChar(guessWord, i, '-');
+document.getElementById("hintBtn").onclick = function() {
+    resultText.textContent = "Hint : " + wordHint;
 }
 
 
@@ -177,16 +251,13 @@ document.onkeyup = function (event) {
         }
     }
 
-    var resultText = document.getElementById("result-text");
+    
     if (wordFound) {
         resultText.textContent = "Awesome !!!, you did it";
+        playAgainBtn.setAttribute("class","btn btn-dark d-block");
     } else if (numberofTries === maxTries) { 
-        resultText.textContent = "The actual word is " + actualWord + ". Better luck next time";
+        resultText.textContent = "The actual word is " + actualWord;
+        playAgainBtn.setAttribute("class","btn btn-dark d-block");
     }
-        
-
-
-
-
 
 };
