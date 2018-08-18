@@ -69,7 +69,8 @@ body{
 
 #playBtn {
     float: right;
-    margin-left: 265px;
+    position: static;
+    margin-left: 50px;
 }
 
 #alphatron {
