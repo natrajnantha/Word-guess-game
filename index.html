@@ -19,18 +19,19 @@
         <h1>ASTRO H A N G M A N </h1>
 
         <div>
-        <form class="form-inline md-2 md-lg-">
+            <form class="form-inline md-2 md-lg-">
                 <button id="playBtn" type="button" class="btn btn-dark my-2 my-sm-0 d-none" placeholder="Search">New Game</button>
 
-        </form>
+            </form>
         </div>
-</nav>
+    </nav>
 
 
     <div class="container">
 
         <div class="row">
             <div class="col-md-6">
+                <!-- Define the Jumbotron for the Guess work panel that captures the user key and displays -->
                 <div id="guessJumbo" class="jumbotron justify-content-center">
                     <h2>Guess the word</h2>
                     <br>
@@ -40,6 +41,7 @@
                         </span>
                     </h3>
                     <hr>
+                    <!-- Define the Canvas that animates the hangman -->
                     <canvas id="myCanvas" width="300" height="250" style="border:3px solid grey;">
                         Your browser does not support the canvas element.
                     </canvas>
@@ -47,6 +49,7 @@
                 </div>
             </div>
             <div class="col-md-6">
+                <!-- Define the Jumbotron stats panel. This panel will display the game stats-->
                 <div id="j1" class="jumbotron justify-content-center bg-danger">
                     <h5>
                         <span> Maximum Number of Tries : </span>
@@ -77,6 +80,8 @@
 
                     <div class="row">
                         <div class="col-md-12">
+                            <!-- This Jumbotron defines the area for displaying the alphabets and strikes out the keys that user clicked.
+                            The incorrect key is displayed in red strike out and the correct key is displayed in green strikeout -->
                             <div id="alphatron" class="jumbotron">
                                 <h3>
                                     <strong>

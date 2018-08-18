@@ -1,3 +1,7 @@
+// Declare the wordstore database in the Array. The game will generate a random number between the size of the array and will 
+// use the random word as a secret word for the user to guess. This is an double dimention array that would also store a hint for
+// the corresponding word in the second dimention indices. The hint will be displayed when the user clicks the hint button. 
+// This is a astronomy theamed hangman game, so the astronomy words and hints will make sense for this game. 
 var wordStore = [
     ['mercury', 'planet'],
     ['venus', 'planet'],
@@ -16,6 +20,8 @@ var wordStore = [
     ['universe', 'billions of galaxies'],
     ['hubble', 'space telescope'],
     ['andromeda', 'Its a galaxy']];
+
+// This array stores all the allowed alphabets. Further down in the logic this array will be used to traverse thru to match the user key 
 var alphabets = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
 
 var userText = document.getElementById("user-text");
@@ -37,24 +43,10 @@ var resultText = document.getElementById("result-text");
 var resultText = document.getElementById("result-text");
 var playAgainBtn = document.getElementById("playBtn");
 
-// var targetDiv = document.getElementById("totalTries");
-// targetDiv.textContent = maxTries;
 
-// var targetDiv = document.getElementById("exhausted");
-// targetDiv.textContent = numberofTries;
-
-// var targetDiv = document.getElementById("pending");
-// targetDiv.textContent = maxTries - numberofTries;
-
-// var randomWordIndex = Math.floor(Math.random() * wordStore.length);
-// var actualWord = wordStore[randomWordIndex][0];
-// var wordHint = wordStore[randomWordIndex][1];
-// var resultText = document.getElementById("result-text");
-// resultText.textContent = wordHint;
-
-
+//This function accepts 3 arguments - A word, position and a character. The character will get inserted into the word in the nth position 
+//thats passed as the parameter and the resulting word is returned.
 function insertGuessChar(word, pos, ch) {
-    console.log("First part " + word.slice(0, pos) + "Second part " + ch + "Third Part " + word.slice(pos + 1));
     return word.slice(0, pos) + ch + word.slice(pos + 1);
 }
 
@@ -202,7 +194,7 @@ document.getElementById("hintBtn").onclick = function() {
 
 // Next, we give JavaScript a function to execute when onkeyup event fires.
 document.onkeyup = function (event) {
-    keyTyped = event.key;
+    keyTyped = event.key.toLowerCase();
     var matchFound = false;
     if (wordFound || numberofTries >= maxTries) {
         alert("Refresh page");
