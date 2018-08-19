@@ -5,16 +5,16 @@ ASTRO H A N G M A N Game
 ************************
 
 This game is a word guessing game with the theame of Astronomy. All the words and hints used are based on Astronomy. 
-The word maintains an internal database of the Astronomy words. The game logic generates random words and challenges the user to guess the word.
+The code maintains an internal database of the Astronomy words. The game logic generates random words and challenges the user to guess the word.
 The game has 2 main jumbotron panels - 
-   Guess panel - This is where the user key is captured and the guess word progress is displayed. This panel also animates a hangman when a non matching key is pressed
-   Stats panel - This panel displays the Total number of tries, number of tries completed and number of tries pending. Also the panel shows all the alphabets and 
+1. Guess panel - This is where the user key is captured and the progress made on the guess word is displayed. This panel also animates a hangman when a non matching key is pressed
+2. Stats panel - This panel displays the Total number of tries, number of tries completed and number of tries pending. Also the panel shows all the alphabets and 
                  strikes out the alphabet that has been used already. If the tried alphabet matches to any letter in the guess word, then the alphabet is struck in 
                  green font, else in red font. If the user presses the same alphabet, it will still reduce the number of tries indicating that the user has wasted a 
                  key. 
 The Stats panel also shows a hint button, clicking which the hint will be displayed in the footer area. 
-The footer area also displays if the player has won or lost
-Win event, lose event and hint button click all plays a sound
+The footer area also displays if the player has won or lost. 
+Win event, lose event and hint button click all plays a sound. 
 Win or Loose will also show the "New Game" button on the navigation bar. When the user clicks the New game, the game will be initialized and the New game button will become invisible again.
 
 
