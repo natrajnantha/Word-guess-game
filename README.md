@@ -12,6 +12,7 @@ The game has 2 main jumbotron panels -
                  strikes out the alphabet that has been used already. If the tried alphabet matches to any letter in the guess word, then the alphabet is struck in 
                  green font, else in red font. If the user presses the same alphabet, it will still reduce the number of tries indicating that the user has wasted a 
                  key. 
+
 The Stats panel also shows a hint button, clicking which the hint will be displayed in the footer area. 
 The footer area also displays if the player has won or lost. 
 Win event, lose event and hint button click all plays a sound. 
